@@ -16,7 +16,7 @@ func main() {
 
 	defer file.Close()
 
-	_, err := file.WriteString(jsonData)
+	_, err = file.WriteString(jsonData)
 	if err != nil {
 		log.Fatal(err)
 	}
