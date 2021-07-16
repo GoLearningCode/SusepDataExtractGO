@@ -37,4 +37,14 @@ func main() {
 	// printing odata context to confirm convertion
 	fmt.Println(susepData["@odata.context"])
 
+	// creating map for tipo produto
+	json_data := map[string]interface{} 
+
+	// filtering data by tipo produto
+	for _, produto := range susepData["value"] {
+		if (produto["tipoproduto"] == "PLANO DE PREVIDÊNCIA") {
+			
+		}
+	} 
+
 }
