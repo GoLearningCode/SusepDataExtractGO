@@ -1,6 +1,8 @@
 package main
 
 import (
+	"encoding/json"
+	"fmt"
 	"log"
 	"os"
 
@@ -8,7 +10,10 @@ import (
 )
 
 func main() {
+	// getting the json data
 	jsonData := data.GetJson()
+
+	// saving the data in local file
 	file, err := os.Create("data.json")
 	if err != nil {
 		log.Fatal(err)
@@ -22,4 +27,14 @@ func main() {
 	}
 
 	file.Sync()
+
+	// parsing to maps
+
+	var susepData map[string]interface{}
+
+	json.Unmarshal([]byte(jsonData), &susepData)
+
+	// printing odata context to confirm convertion
+	fmt.Println(susepData["@odata.context"])
+
 }
