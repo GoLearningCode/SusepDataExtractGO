@@ -38,13 +38,17 @@ func main() {
 	fmt.Println(susepData["@odata.context"])
 
 	// creating map for tipo produto
-	json_data := map[string]interface{} 
+	jsonValue := susepData["value"].([]interface{})
+
+	filtered_data := map[string]interface{}{}
 
 	// filtering data by tipo produto
-	for _, produto := range susepData["value"] {
-		if (produto["tipoproduto"] == "PLANO DE PREVIDÊNCIA") {
-			
+	for _, data := range jsonValue {
+		if data.(map[string]interface{})["tipoproduto"] == "PLANO DE PREVIDÊNCIA" {
+			filtered_data = map[string]interface{}{data, filtered_data}}
 		}
-	} 
+	}
+
+	fmt.Println(filtered_data)
 
 }
