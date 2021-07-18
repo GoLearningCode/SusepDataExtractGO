@@ -40,15 +40,11 @@ func main() {
 	// creating map for tipo produto
 	jsonValue := susepData["value"].([]interface{})
 
-	filtered_data := map[string]interface{}{}
-
 	// filtering data by tipo produto
 	for _, data := range jsonValue {
 		if data.(map[string]interface{})["tipoproduto"] == "PLANO DE PREVIDÊNCIA" {
-			filtered_data = map[string]interface{}{data, filtered_data}}
+			fmt.Println(data)
 		}
 	}
-
-	fmt.Println(filtered_data)
 
 }
