@@ -37,14 +37,36 @@ func main() {
 	// printing odata context to confirm convertion
 	fmt.Println(susepData["@odata.context"])
 
+	// creating struct with data type
+	type processo struct {
+		cnpj           interface{}
+		entnome        interface{}
+		numeroprocesso interface{}
+		ramo           interface{}
+		subramo        interface{}
+		tipoproduto    interface{}
+	}
+
+	filteredData := []processo{}
+
 	// creating map for tipo produto
 	jsonValue := susepData["value"].([]interface{})
 
 	// filtering data by tipo produto
 	for _, data := range jsonValue {
 		if data.(map[string]interface{})["tipoproduto"] == "PLANO DE PREVIDÊNCIA" {
-			fmt.Println(data)
+			novoProcesso := processo{
+				cnpj:           data.(map[string]interface{})["cnpj"],
+				entnome:        data.(map[string]interface{})["entnome"],
+				numeroprocesso: data.(map[string]interface{})["numeroprocesso"],
+				ramo:           data.(map[string]interface{})["ramo"],
+				subramo:        data.(map[string]interface{})["subramo"],
+				tipoproduto:    data.(map[string]interface{})["tipoproduto"],
+			}
+			filteredData = append(filteredData, novoProcesso)
 		}
 	}
+
+	fmt.Println(filteredData)
 
 }
