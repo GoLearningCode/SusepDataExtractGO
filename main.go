@@ -67,6 +67,13 @@ func main() {
 		}
 	}
 
-	fmt.Println(filteredData)
+	processNumbers := []string{}
+
+	// getting process numbers
+	for _, data := range filteredData {
+		processNumbers = append(processNumbers, data.numeroprocesso.(string))
+	}
+
+	fmt.Println(processNumbers)
 
 }
